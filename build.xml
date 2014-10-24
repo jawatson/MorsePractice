@@ -6,7 +6,7 @@
 
     <target name="compile">
         <mkdir dir="build/classes"/>
-        <javac encoding="UTF-8" srcdir="src" destdir="build/classes">
+        <javac encoding="UTF-8" srcdir="src" destdir="build/classes" includeantruntime="false">
         	<compilerarg value="-Xlint:all,-serial"/>
 	</javac>
     </target>
