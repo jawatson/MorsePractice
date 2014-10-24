@@ -1,0 +1,128 @@
+package org.minow.MorsePractice;
+
+import javax.swing.table.AbstractTableModel;
+
+/**
+ * <p>
+ * TrialTableModel holds the trial table data.  It replaces (and borrows code from)
+ * the TrialMatrix class in the original distribution.
+ * </p>
+ * <p>
+ * Copyright &copy; 2009 
+ *        <a href="mailto:hz1jw@qsl.net">Jim Watson</a>.
+ *        All Rights Reserved.
+ * </p>
+ * <p>
+ * <small>
+ * Permission to use, copy, modify, and redistribute this software and its
+ * documentation for personal, non-commercial use is hereby granted provided that
+ * this copyright notice and appropriate documentation appears in all copies. This
+ * software may not be distributed for fee or as part of commercial, "shareware,"
+ * and/or not-for-profit endevors including, but not limited to, CD-ROM collections,
+ * online databases, and subscription services without specific license.  The
+ * author makes no expressed or implied warranty of any kind and assumes no
+ * responsibility for errors or omissions. No liability is assumed for any incidental
+ * or consequental damages in connection with or arising out of the use of the
+ * information or program.
+ * </small>
+ * </p>
+ *
+ * @author <a href="mailto:hz1jw@qsl.net">Jim Watson</a>
+ * @version 1.0
+ * 
+ */
+class TrialTableModel extends AbstractTableModel {
+
+    private String[][]	content;
+    private String [] 	columnNames;
+    private String []   rowNames;
+    /**
+     * matched marks the "sent character == got character" cells.
+     * These are displayed with a highlighted background color.
+     */
+    //private boolean[][] matched;
+
+    private int         contentRows;
+    private int         contentCols;
+
+    public TrialTableModel(TrialData trialData) {
+        super();
+    	contentRows = trialData.gotSymbols.length + 1;
+    	contentCols = trialData.sentSymbols.length + 2; /* Add one for the row label */
+        content = new String[contentRows][contentCols]; 
+        //matched = new boolean[contentRows][contentCols];
+        populateContentMatrix(trialData);
+	populateColumnNames(trialData);
+        //populateRowNames(trialData);
+    }
+
+    public int getRowCount() {
+        return contentRows;
+    }
+
+    public int getColumnCount() {
+        return contentCols;
+    }
+
+    public Object getValueAt(int row, int column) {
+        return content[row][column];
+    }
+
+    public String getColumnName(int col) {
+        return columnNames[col];
+    }
+
+    public Class<?> getColumnClass(int c) {
+        return String.class;
+    }
+
+    /**
+     * Copy data from the trialData object into the content matrix.
+     */
+    private void populateContentMatrix(TrialData trialData) {
+        int row;
+        int col;
+        String text;
+
+        for (row = 0; row < trialData.gotSymbols.length; row++) {
+            char gotChar        = trialData.gotSymbols[row].theChar;
+            content[row][0] = Character.toString(gotChar);
+            for (col = 0; col < trialData.sentSymbols.length; col++) {
+                boolean isMatch = (gotChar == trialData.sentSymbols[col].theChar);
+                store(row, col+1, trialData.matrix[row][col], isMatch);
+            }
+            store(row, col+1, trialData.gotSum[row], false);
+        }
+        content[row][0] = "Tot";
+        int total               = 0;
+        for (col = 0; col < trialData.sentSymbols.length; col++) {
+            int sentSum         = trialData.sentSum[col];
+            total               += sentSum;
+            store(row, col+1, sentSum, false);
+        }
+        store(row, col+1, total, false);
+    }
+
+    private void populateColumnNames (TrialData trialData) {
+        TrialChar[] symbols     = trialData.sentSymbols;
+        columnNames = new String[contentCols];
+        for (int i = 0; i < symbols.length; i++) {
+            columnNames[i+1] = symbols[i].toString();
+        }
+	columnNames[contentCols-1] = "Tot";
+    }
+
+
+    private void store(
+            int                 row,
+            int                 col,
+            int                 value,
+            boolean             isMatch) {
+        String text             = (value == 0) ? "" : Integer.toString(value);
+        content[row][col]       = text;
+        //matched[row][col]       = isMatch;
+    }
+
+
+
+} /* end of class TrialTableModel */

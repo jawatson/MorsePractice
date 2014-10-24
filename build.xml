@@ -1,0 +1,31 @@
+<project>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac encoding="UTF-8" srcdir="src" destdir="build/classes">
+        	<compilerarg value="-Xlint:all,-serial"/>
+	</javac>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/MorsePractice.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="org.minow.MorsePractice.MorsePractice"/>
+            </manifest>
+            <fileset dir="src">
+                <include name="org/minow/MorsePractice/morse.gif"/>
+		<include name="org/minow/MorsePractice/About.html"/>
+            </fileset>
+        </jar>
+    </target>
+
+    <target name="run"  depends="jar">
+        <java jar="build/jar/MorsePractice.jar" fork="true"/>
+    </target>
+
+</project>
