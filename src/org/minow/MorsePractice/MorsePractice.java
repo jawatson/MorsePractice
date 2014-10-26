@@ -2148,6 +2148,12 @@ test:   do {
              */
             int frameWidth              = 600;
             int frameHeight             = 540;
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("com.sun.java.swing.plaf.gtk.GTKLookAndFeel".equals(info.getClassName())) {   
+                      javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                      break;
+                } 
+            }
             JApplet morsePractice        = new MorsePractice(true);
             org.minow.applets.AppletFramework frame =
                     new org.minow.applets.AppletFramework(
