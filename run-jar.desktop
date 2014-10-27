@@ -1,0 +1,11 @@
+# From information presented at the following location
+# https://ask.fedoraproject.org/en/question/9735/how-do-i-launch-jar-files-using-nautilus/
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+
+Exec=java -jar %f
+Icon=java
+
+Name=run-jar
+Comment=Run a jar file
