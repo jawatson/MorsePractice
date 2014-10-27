@@ -25,4 +25,13 @@ executable with the following command and double clicking on the
 
     $ chmod +x MorsePractice.jar
 
+Fedora
+------
+On Fedora, copy the file 'run-jar.desktop' to the local applications 
+folder with the following command;
+
+    $ sudo cp run-jar.desktop /usr/local/share/applications
+
+Right-Click on the MorsePractice.jar file and select, 'properties' - 
+'Open With'.  From 'Other Applictions' list, select 'run-jar'.
 
