@@ -17,3 +17,12 @@ From the top level directory of the clone;
     $ ant jar
     $ java -jar java -jar build/jar/MorsePractice.jar
 
+Ubuntu
+-----
+Ubuntu users will be able to run the application by setting the file to
+executable with the following command and double clicking on the 
+.jar file.
+
+    $ chmod +x MorsePractice.jar
+
+
