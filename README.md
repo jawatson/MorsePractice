@@ -15,7 +15,7 @@ Building and Running the Application
 From the top level directory of the clone;
 
     $ ant jar
-    $ java -jar java -jar build/jar/MorsePractice.jar
+    $ java -jar build/jar/MorsePractice.jar
 
 Ubuntu
 -----
