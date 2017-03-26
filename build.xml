@@ -19,7 +19,8 @@
             </manifest>
             <fileset dir="src">
                 <include name="org/minow/MorsePractice/morse.gif"/>
-		<include name="org/minow/MorsePractice/About.html"/>
+		        <include name="org/minow/MorsePractice/About.html"/>
+		        <include name="org/minow/MorsePractice/Training.html"/>
             </fileset>
         </jar>
     </target>
