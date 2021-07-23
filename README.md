@@ -1,6 +1,8 @@
 MorsePractice
 =============
 
+** Recent changes to java mean that this project no longer compiles **
+
 An updated version of Martin Minow's Morse Practice applet/application.
 
 This is an update of Martin Minow's excellent Morse Practice application, based on the source code available at Martin's (posthumously maintained) website [https://www.merrymeet.com/minow/MorsePractice/MorsePractice.html](https://www.merrymeet.com/minow/MorsePractice/MorsePractice.html).
